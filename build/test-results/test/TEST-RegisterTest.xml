@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RegisterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-02-05T14:34:42" hostname="DESKTOP-T9RUIH0" time="0.048">
+<testsuite name="RegisterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-02-05T15:33:55" hostname="DESKTOP-T9RUIH0" time="0.051">
   <properties/>
-  <testcase name="testRegisterCtorShouldAcceptListOfNaughtyStudents" classname="RegisterTest" time="0.01"/>
-  <testcase name="testGetRegister" classname="RegisterTest" time="0.001"/>
-  <testcase name="testPrintRegister" classname="RegisterTest" time="0.036"/>
+  <testcase name="testGetStudentByNameShouldThrow" classname="RegisterTest" time="0.006"/>
+  <testcase name="testRegisterCtorShouldAcceptListOfNaughtyStudents" classname="RegisterTest" time="0.005"/>
+  <testcase name="testGetStudentByName" classname="RegisterTest" time="0.002"/>
+  <testcase name="testGetRegister" classname="RegisterTest" time="0.002"/>
+  <testcase name="testPrintRegister" classname="RegisterTest" time="0.026"/>
   <system-out><![CDATA[
 ===========================
 Level L100
 
-Kwame
 Akua
+Kwame
 
 ===========================
 Level L300

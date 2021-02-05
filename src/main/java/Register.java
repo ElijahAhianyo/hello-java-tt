@@ -72,4 +72,13 @@ public class Register {
 
         return x;
     }
+
+    Student getStudentByName(String name) throws StudentNotFoundException {
+        for (var s : this.students) {
+            if (s.getName() == name) {
+                return s;
+            }
+        }
+        throw new StudentNotFoundException("Did not find a student with the name: " + name);
+    }
 }
