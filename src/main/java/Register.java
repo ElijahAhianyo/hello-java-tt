@@ -2,44 +2,37 @@ import java.util.*;
 
 public class Register {
 
-    private List<Nameable> nameables;
+    private List<Student> students;
 
     Register() {}
 
-    Register(List<Nameable> nameables) {
-        this.nameables = nameables;
-    }
-
-    public List<Nameable> getNameables() {
-        return nameables;
-    }
-
-    public void setNameables(List<Nameable> nameables) {
-        this.nameables = nameables;
+    Register(List<Student> students) {
+        this.students = students;
     }
 
     public List<String> getRegister() {
         List<String> names = new ArrayList<String>();
 
-        for (var nameable : this.nameables) {
+        for (var nameable : this.students) {
             names.add(nameable.getName());
         }
 
         return names;
     }
 
-    public List<String> getRegisterByLevel(Level level) {
-        var names = new ArrayList<String>();
+    public Map<Level, List<Student>> getRegisterByLevel(Level level) {
+        var names = new ArrayList<Student>();
 
-        for (var student : this.nameables) {
-//            Make sure object is student and not any Nameable
-//            because NaughtyStudent does not have a Level property
+        for (var student : this.students) {
             if(((Student) student).getLevel() == level) {
-                names.add(student.getName());
+                names.add(student);
             }
         }
 
-        return names;
+        var map = new HashMap<Level, List<Student>>();
+        map.put(level, names);
+
+        return map;
     }
 
     public String printReport() {
@@ -47,10 +40,10 @@ public class Register {
         var studentsByLevel = new EnumMap<Level, HashSet<Student>>(Level.class);
 
 //        re-arrange students
-        for (var student : this.nameables) {
+        for (var student : this.students) {
             var l = ((Student) student).getLevel();
             if (!studentsByLevel.containsKey(l)) {
-                studentsByLevel.put(l, new HashSet<Student>());
+                studentsByLevel.put(l, new HashSet<>());
             }
             studentsByLevel.get(l).add((Student) student);
         }
@@ -70,5 +63,13 @@ public class Register {
         System.out.println(wrapper.out);
 
         return wrapper.out;
+    }
+
+    List<Student> sort(Comparator<Student> c) {
+        var x = new ArrayList<>(this.students);
+
+        x.sort(c);
+
+        return x;
     }
 }

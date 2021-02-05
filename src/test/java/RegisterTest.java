@@ -33,7 +33,7 @@ public class RegisterTest extends TestCase {
     }
 
     public void testPrintRegister() {
-        var str = register.printReport();
+        var str = this.register.printReport();
 
         assertTrue(str.contains("Akua"));
     }

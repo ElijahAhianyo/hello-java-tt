@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RegisterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-05T11:04:42" hostname="DESKTOP-T9RUIH0" time="0.036">
+<testsuite name="RegisterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-02-05T14:34:42" hostname="DESKTOP-T9RUIH0" time="0.048">
   <properties/>
+  <testcase name="testRegisterCtorShouldAcceptListOfNaughtyStudents" classname="RegisterTest" time="0.01"/>
+  <testcase name="testGetRegister" classname="RegisterTest" time="0.001"/>
   <testcase name="testPrintRegister" classname="RegisterTest" time="0.036"/>
   <system-out><![CDATA[
 ===========================
