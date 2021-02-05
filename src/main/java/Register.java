@@ -8,6 +8,7 @@ public class Register {
 
     Register(List<Nameable> nameables) {
         this.nameables = nameables;
+        error;
     }
 
     public List<Nameable> getNameables() {
@@ -34,7 +35,7 @@ public class Register {
         for (var student : this.nameables) {
 //            Make sure object is student and not any Nameable
 //            because NaughtyStudent does not have a Level property
-            if(((Student) student).getLevel() == level) {
+            if(student instanceof Student && ((Student) student).getLevel() == level) {
                 names.add(student.getName());
             }
         }
@@ -48,11 +49,13 @@ public class Register {
 
 //        re-arrange students
         for (var student : this.nameables) {
-            var l = ((Student) student).getLevel();
-            if (!studentsByLevel.containsKey(l)) {
-                studentsByLevel.put(l, new HashSet<Student>());
+            if (student instanceof Student) {
+                var l = ((Student) student).getLevel();
+                if (!studentsByLevel.containsKey(l)) {
+                    studentsByLevel.put(l, new HashSet<Student>());
+                }
+                studentsByLevel.get(l).add((Student) student);
             }
-            studentsByLevel.get(l).add((Student) student);
         }
 
 //        print students
