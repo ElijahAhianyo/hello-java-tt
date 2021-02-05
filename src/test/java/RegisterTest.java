@@ -49,4 +49,18 @@ public class RegisterTest extends TestCase {
 
         assertTrue(r.getRegister().containsAll(Arrays.asList("Kwesi", "Adwoa", "Kayce")));
     }
+
+    public void testGetStudentByName() throws Exception {
+        var s = this.register.getStudentByName("Kwame");
+
+        assertEquals("Kwame", s.getName());
+    }
+
+    public void testGetStudentByNameShouldThrow() {
+        try {
+            var s = this.register.getStudentByName("Kukua");
+
+            fail("StudentNotFoundException not thrown but student was not found");
+        } catch (StudentNotFoundException e) {}
+    }
 }
