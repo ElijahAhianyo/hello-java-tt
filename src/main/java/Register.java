@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Register {
 
@@ -11,28 +12,20 @@ public class Register {
     }
 
     public List<String> getRegister() {
-        List<String> names = new ArrayList<String>();
-
-        for (var nameable : this.students) {
-            names.add(nameable.getName());
-        }
-
-        return names;
+        return this.students.stream()
+                .map(Student::getName)
+                .collect(Collectors.toList());
     }
 
     public Map<Level, List<Student>> getRegisterByLevel(Level level) {
-        var names = new ArrayList<Student>();
 
-        for (var student : this.students) {
-            if(((Student) student).getLevel() == level) {
-                names.add(student);
-            }
-        }
+        List<Student> names = this.students.stream()
+                .filter(s -> s.getLevel().equals(level))
+                .collect(Collectors.toList());
 
-        var map = new HashMap<Level, List<Student>>();
-        map.put(level, names);
-
-        return map;
+        return new HashMap<Level, List<Student>>() {{
+            put(level, names);
+        }};
     }
 
     public String printReport() {
@@ -40,13 +33,14 @@ public class Register {
         var studentsByLevel = new EnumMap<Level, HashSet<Student>>(Level.class);
 
 //        re-arrange students
-        for (var student : this.students) {
-            var l = ((Student) student).getLevel();
-            if (!studentsByLevel.containsKey(l)) {
-                studentsByLevel.put(l, new HashSet<>());
-            }
-            studentsByLevel.get(l).add((Student) student);
-        }
+        this.students.stream()
+                .forEach(student -> {
+                    var l = ((Student) student).getLevel();
+                    if (!studentsByLevel.containsKey(l)) {
+                        studentsByLevel.put(l, new HashSet<>());
+                    }
+                    studentsByLevel.get(l).add((Student) student);
+                });
 
 //        print students
         studentsByLevel.forEach((level, students) -> {
@@ -74,11 +68,11 @@ public class Register {
     }
 
     Student getStudentByName(String name) throws StudentNotFoundException {
-        for (var s : this.students) {
-            if (s.getName() == name) {
-                return s;
-            }
-        }
-        throw new StudentNotFoundException("Did not find a student with the name: " + name);
+        return this.students.stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .orElseThrow(
+                    StudentNotFoundException::new
+                );
     }
 }
