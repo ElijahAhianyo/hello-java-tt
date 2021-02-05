@@ -61,6 +61,6 @@ public class RegisterTest extends TestCase {
             var s = this.register.getStudentByName("Kukua");
 
             fail("StudentNotFoundException not thrown but student was not found");
-        } catch (StudentNotFoundException e) {}
+        } catch (StudentNotFoundException ignored) {}
     }
 }
