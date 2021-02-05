@@ -37,4 +37,16 @@ public class RegisterTest extends TestCase {
 
         assertTrue(str.contains("Akua"));
     }
+
+    public void testRegisterCtorShouldAcceptListOfNaughtyStudents() {
+        var nStudents = Arrays.asList(
+                new NaughtyStudent() {{ setName("Kwesi"); }},
+                new NaughtyStudent() {{ setName("Adwoa"); }},
+                new NaughtyStudent() {{ setName("Kayce"); }}
+        );
+
+        var r = new Register(nStudents);
+
+        assertTrue(r.getRegister().containsAll(Arrays.asList("Kwesi", "Adwoa", "Kayce")));
+    }
 }

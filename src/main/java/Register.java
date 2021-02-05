@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Register {
 
-    private List<Student> students;
+    private List<? extends Student> students;
 
     Register() {}
 
-    Register(List<Student> students) {
+    Register(List<? extends Student> students) {
         this.students = students;
     }
 
@@ -65,7 +65,7 @@ public class Register {
         return wrapper.out;
     }
 
-    List<Student> sort(Comparator<Student> c) {
+    List<? extends Student> sort(Comparator<Student> c) {
         var x = new ArrayList<>(this.students);
 
         x.sort(c);
