@@ -8,7 +8,6 @@ public class Register {
 
     Register(List<Nameable> nameables) {
         this.nameables = nameables;
-        error;
     }
 
     public List<Nameable> getNameables() {
