@@ -1,4 +1,4 @@
-**turntable TLC Javva group project 1
+**turntable TLC Java group project 1**
 
 Group 11
 ---

@@ -1,45 +1,31 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Register {
 
-    private List<Nameable> nameables;
+    private List<? extends Student> students;
 
     Register() {}
 
-    Register(List<Nameable> nameables) {
-        this.nameables = nameables;
-    }
-
-    public List<Nameable> getNameables() {
-        return nameables;
-    }
-
-    public void setNameables(List<Nameable> nameables) {
-        this.nameables = nameables;
+    Register(List<? extends Student> students) {
+        this.students = students;
     }
 
     public List<String> getRegister() {
-        List<String> names = new ArrayList<String>();
-
-        for (var nameable : this.nameables) {
-            names.add(nameable.getName());
-        }
-
-        return names;
+        return this.students.stream()
+                .map(Student::getName)
+                .collect(Collectors.toList());
     }
 
-    public List<String> getRegisterByLevel(Level level) {
-        var names = new ArrayList<String>();
+    public Map<Level, List<Student>> getRegisterByLevel(Level level) {
 
-        for (var student : this.nameables) {
-//            Make sure object is student and not any Nameable
-//            because NaughtyStudent does not have a Level property
-            if(student instanceof Student && ((Student) student).getLevel() == level) {
-                names.add(student.getName());
-            }
-        }
+    List<Student> names = this.students.stream()
+            .filter(s -> s.getLevel().equals(level))
+            .collect(Collectors.toList());
 
-        return names;
+        return new HashMap<Level, List<Student>>() {{
+            put(level, names);
+        }};
     }
 
     public String printReport() {
@@ -47,15 +33,14 @@ public class Register {
         var studentsByLevel = new EnumMap<Level, HashSet<Student>>(Level.class);
 
 //        re-arrange students
-        for (var student : this.nameables) {
-            if (student instanceof Student) {
+    this.students.stream()
+            .forEach(student -> {
                 var l = ((Student) student).getLevel();
                 if (!studentsByLevel.containsKey(l)) {
-                    studentsByLevel.put(l, new HashSet<Student>());
+                    studentsByLevel.put(l, new HashSet<>());
                 }
                 studentsByLevel.get(l).add((Student) student);
-            }
-        }
+            });
 
 //        print students
         studentsByLevel.forEach((level, students) -> {
@@ -72,5 +57,22 @@ public class Register {
         System.out.println(wrapper.out);
 
         return wrapper.out;
+    }
+
+    List<? extends Student> sort(Comparator<Student> c) {
+        var x = new ArrayList<>(this.students);
+
+        x.sort(c);
+
+        return x;
+    }
+
+    Student getStudentByName(String name) throws StudentNotFoundException {
+        return this.students.stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .orElseThrow(
+                    StudentNotFoundException::new
+                );
     }
 }

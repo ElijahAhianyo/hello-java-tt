@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
+import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,8 +33,34 @@ public class RegisterTest extends TestCase {
     }
 
     public void testPrintRegister() {
-        var str = register.printReport();
+        var str = this.register.printReport();
 
         assertTrue(str.contains("Akua"));
+    }
+
+    public void testRegisterCtorShouldAcceptListOfNaughtyStudents() {
+        var nStudents = Arrays.asList(
+                new NaughtyStudent() {{ setName("Kwesi"); }},
+                new NaughtyStudent() {{ setName("Adwoa"); }},
+                new NaughtyStudent() {{ setName("Kayce"); }}
+        );
+
+        var r = new Register(nStudents);
+
+        assertTrue(r.getRegister().containsAll(Arrays.asList("Kwesi", "Adwoa", "Kayce")));
+    }
+
+    public void testGetStudentByName() throws Exception {
+        var s = this.register.getStudentByName("Kwame");
+
+        assertEquals("Kwame", s.getName());
+    }
+
+    public void testGetStudentByNameShouldThrow() {
+        try {
+            var s = this.register.getStudentByName("Kukua");
+
+            fail("StudentNotFoundException not thrown but student was not found");
+        } catch (StudentNotFoundException ignored) {}
     }
 }
