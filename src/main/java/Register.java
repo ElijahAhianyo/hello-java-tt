@@ -70,7 +70,7 @@ public class Register {
     Student getStudentByName(String name) throws StudentNotFoundException {
         return this.students.stream()
                 .filter(s -> s.getName().equals(name))
-                .findFirst()
+                .findAny()
                 .orElseThrow(
                     StudentNotFoundException::new
                 );
@@ -97,5 +97,10 @@ public class Register {
                 .boxed()
                 .collect(Collectors.toList());
     }
-}
 
+    Optional<Student> getOptionalStudentByName(String name) {
+        return (Optional<Student>) this.students.stream()
+                .filter(s -> s.getName().equals(name))
+                .findAny();
+    }
+}

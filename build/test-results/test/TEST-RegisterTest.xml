@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RegisterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-08T21:58:33" hostname="DESKTOP-T9RUIH0" time="0.026">
+<testsuite name="RegisterTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2021-02-08T21:59:53" hostname="DESKTOP-T9RUIH0" time="0.065">
   <properties/>
-  <testcase name="testGetGradesAbove60" classname="RegisterTest" time="0.026"/>
+  <testcase name="testGetHighestGrade" classname="RegisterTest" time="0.009"/>
+  <testcase name="testGetAverageGrade" classname="RegisterTest" time="0.004"/>
+  <testcase name="testGetStudentByNameShouldThrow" classname="RegisterTest" time="0.003"/>
+  <testcase name="testGetGradesAbove60" classname="RegisterTest" time="0.015"/>
+  <testcase name="testRegisterCtorShouldAcceptListOfNaughtyStudents" classname="RegisterTest" time="0.005"/>
+  <testcase name="testGetStudentByName" classname="RegisterTest" time="0.002"/>
+  <testcase name="testGetRegister" classname="RegisterTest" time="0.003"/>
+  <testcase name="testPrintRegister" classname="RegisterTest" time="0.019"/>
   <system-out><![CDATA[[75.4, 64.3, 89.9, 91.0]
+
+===========================
+Level L100
+
+Kwame
+Akua
+
+===========================
+Level L300
+
+Sylvia
+
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
