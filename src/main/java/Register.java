@@ -77,7 +77,25 @@ public class Register {
     }
 
     public double getHighestGrade() throws NoSuchElementException {
-        return this.students.stream().flatMapToDouble(Student::getGradesAsDoubleStream).max().getAsDouble();
+        return this.students.stream()
+                .flatMapToDouble(Student::getGradesAsDoubleStream)
+                .max()
+                .getAsDouble();
+    }
+
+    public double getAverageGrade() throws NoSuchElementException {
+        return this.students.stream()
+                .flatMapToDouble(Student::getGradesAsDoubleStream)
+                .average()
+                .getAsDouble();
+    }
+
+    public List<Double> getGradesAbove60() {
+        return this.students.stream()
+                .flatMapToDouble(Student::getGradesAsDoubleStream)
+                .filter(grade -> grade > 60)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }
 
