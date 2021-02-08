@@ -1,4 +1,0 @@
-StudentTest.java
- StudentTest
-LectureTest.java
- LectureTest
