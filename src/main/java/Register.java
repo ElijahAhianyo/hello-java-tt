@@ -75,5 +75,9 @@ public class Register {
                     StudentNotFoundException::new
                 );
     }
+
+    public double getHighestGrade() throws NoSuchElementException {
+        return this.students.stream().flatMapToDouble(Student::getGradesAsDoubleStream).max().getAsDouble();
+    }
 }
 
