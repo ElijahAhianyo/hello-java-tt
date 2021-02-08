@@ -81,4 +81,12 @@ public class RegisterTest extends TestCase {
     public void testGetGradesAbove60() {
         System.out.println(this.register.getGradesAbove60());
     }
+
+    public void testGetStudentsByName() {
+        System.out.println(
+                this.register.getStudentsByName(
+                        Arrays.asList("Akua", "Sylvia")
+                )
+        );
+    }
 }

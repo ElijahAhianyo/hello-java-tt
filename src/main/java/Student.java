@@ -69,4 +69,11 @@ public class Student implements Nameable, HasLevel {
     public DoubleStream getGradesAsDoubleStream() {
         return this.grades.stream().mapToDouble(Double::doubleValue);
     }
+
+    @Override
+    public String toString() {
+        return "Student{name: " + this.name +
+                ", level: " + this.level +
+                ", grades: " + this.grades + "}";
+    }
 }
