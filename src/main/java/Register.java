@@ -103,4 +103,10 @@ public class Register {
                 .filter(s -> s.getName().equals(name))
                 .findAny();
     }
+
+    public List<Student> getStudentsByName(List<String> names) {
+        return this.students.stream()
+                .filter(student -> names.contains(student.getName()))
+                .collect(Collectors.toList());
+    }
 }
