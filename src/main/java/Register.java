@@ -5,9 +5,9 @@ public class Register {
 
     private List<? extends Student> students;
 
-    Register() {}
+    public Register() {}
 
-    Register(List<? extends Student> students) {
+    public Register(List<? extends Student> students) {
         this.students = students;
     }
 
@@ -76,3 +76,4 @@ public class Register {
                 );
     }
 }
+
